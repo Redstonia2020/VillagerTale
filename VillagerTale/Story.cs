@@ -26,6 +26,7 @@ namespace VillagerTale
             public static void SheepDialogue()
             {
                 Console.Clear();
+                Display.Crawl("Sheep: Hello there!");
             }
         }
     }
