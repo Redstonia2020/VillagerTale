@@ -3,7 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30309.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VillagerTale", "VillagerTale\VillagerTale.csproj", "{2EF81E12-C0C0-4855-85A8-C6FB64B76BAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VillagerTale", "VillagerTale\VillagerTale.csproj", "{2EF81E12-C0C0-4855-85A8-C6FB64B76BAC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{6BCD92BA-EA7D-445E-A442-DAA44E03EF33}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{978FE88F-97D4-447D-ADA4-2099F429482D}"
+	ProjectSection(SolutionItems) = preProject
+		docs\basestyles.css = docs\basestyles.css
+		docs\index.html = docs\index.html
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +26,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{978FE88F-97D4-447D-ADA4-2099F429482D} = {6BCD92BA-EA7D-445E-A442-DAA44E03EF33}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1A7BCF98-FB4E-485C-BC5E-1570704F1E3E}

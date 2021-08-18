@@ -3,6 +3,11 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+#################################
+## Redstonia lives in this box ##
+#################################
+saves/
+
 # User-specific files
 *.rsuser
 *.suo
@@ -14,7 +19,7 @@
 *.userprefs
 
 # Build results
-[Dd]ebug/
+#[Dd]ebug/
 [Dd]ebugPublic/
 [Rr]elease/
 [Rr]eleases/
