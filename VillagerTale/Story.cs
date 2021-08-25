@@ -27,7 +27,7 @@ namespace VillagerTale
             {
                 Console.Clear();
                 Display.Speak("Sheep", "Hello there!");
-                int choice = Display.Choose("What do you do? (type your choice (you can use parts of the word))",
+                int choice = Display.Choose("What do you do? (type your choice or use the number on the side)",
                     "Greet it back",
                     "Ask it how it can speak",
                     "Back away",
@@ -41,8 +41,6 @@ namespace VillagerTale
                     States.Queue(State.IntroSheepRetreat);
                 else if (choice == 3)
                     States.Queue(State.IntroSheepPet);
-
-                Console.ReadKey();
             }
 
             public static void SheepGreet()
@@ -60,12 +58,29 @@ namespace VillagerTale
                 Display.Speak("Sheep", "This discussion would be better had in a nice place");
                 Display.Speak("Sheep", "Oh, I have an idea!");
                 Display.Speak("Sheep", "Let's go to my house, and we can discuss it there!");
+                int choice = Display.Choose("",
+                    "\"I'd be happy to!\"",
+                    "\"I have other things to do\"");
+
+                if (choice == 0)
+                {
+                    Display.Speak("Sheep", "Wonderful!");
+                    Display.Speak("Sheep", "Well, what are we waiting for? Let's go!");
+                    //queue
+                }
+
+                else if (choice == 1)
+                {
+                    Display.Speak("Sheep", "Oh, that's too bad.");
+                    Display.Speak("Sheep", "Well, if you ever need me, you can find me around here.");
+                    Display.Speak("Sheep", "See you then!");
+                }
             }
 
             public static void SheepRetreat()
             {
                 Display.Crawl("You slowly back away from the sheep.");
-                Display.Speak("Sheep", "");
+                Display.Speak("Sheep", "W-why are you backing away?");
             }
 
             public static void SheepPet()

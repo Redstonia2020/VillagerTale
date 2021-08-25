@@ -115,7 +115,12 @@ namespace VillagerTale
                     Wait(200);
                 }
 
-                else if (cha == ".")
+                else if (cha == "." || cha == "?" || cha == "!")
+                {
+                    Wait(500);
+                }
+
+                else if (cha == "-")
                 {
                     Wait(500);
                 }
@@ -150,9 +155,9 @@ namespace VillagerTale
             else
                 Console.WriteLine(choose);
 
-            foreach (string e in choices)
+            for (int i = 0; i < choices.Length; i++)
             {
-                Console.WriteLine($"\t{e}");
+                Console.WriteLine($"  ({i + 1:D2}) {choices[i]}");
             }
 
             for (int i = 0; i < choices.Length; i++)
@@ -164,6 +169,11 @@ namespace VillagerTale
             {
                 string choice = Console.ReadLine().ToLower();
                 if (string.IsNullOrWhiteSpace(choice)) { }
+                else if (int.TryParse(choice, out int index) && --index < choices.Length)
+                {
+                    return index;
+                }
+
                 else if (Array.Exists(choices, e => e.StartsWith(choice)))
                 {
                     return Array.FindIndex(choices, e => e.StartsWith(choice));

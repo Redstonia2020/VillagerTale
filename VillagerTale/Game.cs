@@ -53,6 +53,7 @@ namespace VillagerTale
             Display.Text(Align.Center, "Villager Tale", "all rights not reserved", "", "press any key to START");
 
             ChangeSave(true);
+            Console.Clear();
         }
 
         public static Data Data = new Data();
@@ -117,7 +118,7 @@ namespace VillagerTale
                 {
                     if (Display.Confirm($"Create new save with name \"{typed}\"?"))
                     {
-                        CurrrentSave = $"{Game.SaveDirectory}/{typed}.json";
+                        CurrrentSave = $"{SaveDirectory}/{typed}.json";
                         Display.Text($"Created save!");
                         if (startmenu)
                             States.Queue(State.IntroNarrative);
