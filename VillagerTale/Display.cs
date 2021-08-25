@@ -143,6 +143,51 @@ namespace VillagerTale
             return false;
         }
 
+        public static int Choose(string choose, bool crawl, params string[] choices)
+        {
+            if (crawl)
+                Crawl(Align.Left, false, choose);
+            else
+                Console.WriteLine(choose);
+
+            foreach (string e in choices)
+            {
+                Console.WriteLine($"\t{e}");
+            }
+
+            for (int i = 0; i < choices.Length; i++)
+            {
+                choices[i] = choices[i].ToLower();
+            }
+
+            while (true)
+            {
+                string choice = Console.ReadLine().ToLower();
+                if (string.IsNullOrWhiteSpace(choice)) { }
+                else if (Array.Exists(choices, e => e.StartsWith(choice)))
+                {
+                    return Array.FindIndex(choices, e => e.StartsWith(choice));
+                }
+
+                else if (Array.Exists(choices, e => e.Contains(choice)))
+                {
+                    return Array.FindIndex(choices, e => e.Contains(choice));
+                }
+            }
+        }
+
+        public static int Choose(string choose, params string[] choices)
+        {
+            return Choose(choose, false, choices);
+        }
+
+
+        public static void Speak(string speaker, string dialogue)
+        {
+            Console.Write($"[{speaker}] ");
+            Crawl($"\"{dialogue}\"");
+        }
+
         public static void CenterVertical(int lines)
         {
             for (int i = 0; i < (Console.WindowHeight - lines) / 2; i++)

@@ -7,8 +7,14 @@ namespace VillagerTale
     public enum State
     {
         StartMenu,
+
         IntroNarrative,
-        IntroSheepDialogue
+
+        IntroSheepDialogue,
+        IntroSheepGreet,
+        IntroSheepQuestion,
+        IntroSheepRetreat,
+        IntroSheepPet
     }
 
     class States
@@ -21,6 +27,10 @@ namespace VillagerTale
             { State.StartMenu, Game.StartMenu },
             { State.IntroNarrative, Story.Intro.Narrative },
             { State.IntroSheepDialogue, Story.Intro.SheepDialogue },
+            { State.IntroSheepGreet, Story.Intro.SheepGreet },
+            { State.IntroSheepQuestion, Story.Intro.SheepQuestion },
+            { State.IntroSheepRetreat, Story.Intro.SheepRetreat },
+            { State.IntroSheepPet, Story.Intro.SheepPet }
         };
 
         public static void Start()
