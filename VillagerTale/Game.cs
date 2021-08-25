@@ -9,6 +9,13 @@ namespace VillagerTale
 {
     class Game
     {
+        public static Data Data = new Data();
+        public static string SaveDirectory = "saves";
+        public static string CurrrentSave;
+        public static string AutosaveDirectory = "saves/autosaves";
+        public static string AutosaveFile = "saves/autosaves/autosave.json";
+        public static bool DevSave = false;
+
         public static void Pause()
         {
             Console.Clear();
@@ -56,14 +63,11 @@ namespace VillagerTale
             Console.Clear();
         }
 
-        public static Data Data = new Data();
-        public static string SaveDirectory = "saves";
-        public static string CurrrentSave;
-        public static string AutosaveDirectory = "saves/autosaves";
-        public static string AutosaveFile = "saves/autosaves/autosave.json";
-
         public static void Save()
         {
+            if (DevSave)
+                return;
+
             try
             {
                 File.WriteAllText(CurrrentSave, JsonSerializer.Serialize(Data));
@@ -116,7 +120,15 @@ namespace VillagerTale
 
                 else
                 {
-                    if (Display.Confirm($"Create new save with name \"{typed}\"?"))
+                    if (typed == "dev")
+                    {
+                        DevSave = true;
+                        if (startmenu)
+                            States.Queue(State.IntroNarrative);
+                        break;
+                    }
+
+                    else if (Display.Confirm($"Create new save with name \"{typed}\"?"))
                     {
                         CurrrentSave = $"{SaveDirectory}/{typed}.json";
                         Display.Text($"Created save!");
@@ -124,6 +136,11 @@ namespace VillagerTale
                             States.Queue(State.IntroNarrative);
                         Save();
                         break;
+                    }
+
+                    else
+                    {
+                        Console.WriteLine("Cancelled action.");
                     }
                 }
             }

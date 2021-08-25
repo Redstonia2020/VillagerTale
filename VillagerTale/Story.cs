@@ -81,6 +81,7 @@ namespace VillagerTale
             {
                 Display.Crawl("You slowly back away from the sheep.");
                 Display.Speak("Sheep", "W-why are you backing away?");
+                int choice = Display.Choose("", "\"I was just startled.\"", "Run away");
             }
 
             public static void SheepPet()
