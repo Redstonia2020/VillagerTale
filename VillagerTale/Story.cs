@@ -48,6 +48,22 @@ namespace VillagerTale
                 Display.Crawl("You greet the sheep in return.");
                 Display.Speak("Sheep", "You must be new.");
                 Display.Speak("Sheep", "Follow me!");
+
+                int choice = Display.Choose("The sheep starts walking away. What do you do?", true,
+                    "Follow it",
+                    "Walk away");
+
+                if (choice == 0)
+                {
+                    States.Queue(State.SheepHome);
+                }
+
+                else if (choice == 1)
+                {
+                    Display.Crawl("You leave the sheep walking into the distance, not once does it look back.");
+                    Display.Crawl("You secretly giggle at the thought that it still thinks you're following it.");
+                    States.Queue(State.SpawnField);
+                }
             }
 
             public static void SheepQuestion()
@@ -66,7 +82,7 @@ namespace VillagerTale
                 {
                     Display.Speak("Sheep", "Wonderful!");
                     Display.Speak("Sheep", "Well, what are we waiting for? Let's go!");
-                    //queue
+                    States.Queue(State.SheepHome);
                 }
 
                 else if (choice == 1)
@@ -74,6 +90,7 @@ namespace VillagerTale
                     Display.Speak("Sheep", "Oh, that's too bad.");
                     Display.Speak("Sheep", "Well, if you ever need me, you can find me around here.");
                     Display.Speak("Sheep", "See you then!");
+                    States.Queue(State.SpawnField);
                 }
             }
 
@@ -85,6 +102,22 @@ namespace VillagerTale
             }
 
             public static void SheepPet()
+            {
+
+            }
+        }
+
+        public class SpawnField
+        {
+            public static void Area()
+            {
+
+            }
+        }
+
+        public class SheepHome
+        {
+            public static void Area()
             {
 
             }

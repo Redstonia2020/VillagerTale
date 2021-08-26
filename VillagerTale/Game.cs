@@ -23,17 +23,28 @@ namespace VillagerTale
             Display.Text(Align.Center, false,
                 "PAUSE Menu",
                 "",
-                "Return to Game",
-                "Save to... (Q)",
+                "Return to Game (ESC)",
+                "Save Game to... (S)",
+                "Load Game... (L)",
                 "Exit Game (BACKSPACE)"
             );
 
             ConsoleKey key = Display.Key();
-            if (key == ConsoleKey.Q)
+            if (key == ConsoleKey.S)
             {
                 Console.Clear();
-                ChangeSave();
+                ChangeSave(false, true);
                 Pause();
+            }
+
+            else if (key == ConsoleKey.L)
+            {
+                if (Display.Confirm("Would you like to save your current file?"))
+                {
+                    Save();
+                    Console.WriteLine("Saved game!");
+                    ChangeSave(true, false);
+                }
             }
 
             else if (key == ConsoleKey.Backspace)
@@ -48,9 +59,14 @@ namespace VillagerTale
                 Pause();
             }
 
+            else if (key == ConsoleKey.Escape)
+            {
+                return;
+            }
+
             else
             {
-
+                Pause();
             }
         }
 
@@ -59,7 +75,7 @@ namespace VillagerTale
             Display.CenterVertical(4);
             Display.Text(Align.Center, "Villager Tale", "all rights not reserved", "", "press any key to START");
 
-            ChangeSave(true);
+            ChangeSave(true, true);
             Console.Clear();
         }
 
@@ -90,7 +106,7 @@ namespace VillagerTale
             States.Queue(Data.CurrentState);
         }
 
-        private static void ChangeSave(bool startmenu = false)
+        private static void ChangeSave(bool load, bool allownew)
         {
             Console.Clear();
 
@@ -109,7 +125,7 @@ namespace VillagerTale
                     int savei = Array.IndexOf(shortnames, typed);
                     CurrrentSave = $"{saves[savei]}";
                     Display.Text($"Using save \"{shortnames[savei]}\" ({saves[savei]})");
-                    if (startmenu)
+                    if (load)
                         Load();
                     else
                         Save();
@@ -120,10 +136,15 @@ namespace VillagerTale
 
                 else
                 {
+                    if (!allownew)
+                    {
+                        continue;
+                    }
+
                     if (typed == "dev")
                     {
                         DevSave = true;
-                        if (startmenu)
+                        if (load)
                             States.Queue(State.IntroNarrative);
                         break;
                     }
@@ -132,7 +153,7 @@ namespace VillagerTale
                     {
                         CurrrentSave = $"{SaveDirectory}/{typed}.json";
                         Display.Text($"Created save!");
-                        if (startmenu)
+                        if (load)
                             States.Queue(State.IntroNarrative);
                         Save();
                         break;

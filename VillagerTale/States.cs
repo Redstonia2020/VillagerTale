@@ -14,7 +14,11 @@ namespace VillagerTale
         IntroSheepGreet,
         IntroSheepQuestion,
         IntroSheepRetreat,
-        IntroSheepPet
+        IntroSheepPet,
+
+        SpawnField,
+
+        SheepHome
     }
 
     class States
@@ -25,12 +29,18 @@ namespace VillagerTale
         public static Dictionary<State, Action> ToAction = new Dictionary<State, Action>
         {
             { State.StartMenu, Game.StartMenu },
+
             { State.IntroNarrative, Story.Intro.Narrative },
+
             { State.IntroSheepDialogue, Story.Intro.SheepDialogue },
             { State.IntroSheepGreet, Story.Intro.SheepGreet },
             { State.IntroSheepQuestion, Story.Intro.SheepQuestion },
             { State.IntroSheepRetreat, Story.Intro.SheepRetreat },
-            { State.IntroSheepPet, Story.Intro.SheepPet }
+            { State.IntroSheepPet, Story.Intro.SheepPet },
+
+            { State.SpawnField, Story.SpawnField.Area },
+
+            { State.SheepHome, Story.SheepHome.Area }
         };
 
         public static void Start()

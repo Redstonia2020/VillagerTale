@@ -137,15 +137,21 @@ namespace VillagerTale
 
         public static bool Confirm(string text, Align alignment = Align.Left)
         {
-            Text(alignment, false, $"{text} (ENTER to confirm, any other key to deny)");
+            Text(alignment, false, $"{text} (y/n)");
 
-            ConsoleKey key = Key();
-            if (key == ConsoleKey.Enter)
+            while (true)
             {
-                return true;
-            }
+                ConsoleKey key = Key();
+                if (key == ConsoleKey.Y)
+                {
+                    return true;
+                }
 
-            return false;
+                else if (key == ConsoleKey.N)
+                {
+                    return false;
+                }
+            }
         }
 
         public static int Choose(string choose, bool crawl, params string[] choices)
