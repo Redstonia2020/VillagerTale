@@ -109,7 +109,7 @@ namespace VillagerTale
         private static void ChangeSave(bool load, bool allownew)
         {
             Console.Clear();
-
+            
             Console.WriteLine("Select a save by inputting the name of your save on the right, or use a different name to create a save with that name.");
             string[] saves = GetSaves(out string[] shortnames);
             for (int i = 0; i < saves.Length; i++)
