@@ -13,7 +13,7 @@ namespace VillagerTale
         IntroSheepDialogue,
         IntroSheepGreet,
         IntroSheepQuestion,
-        IntroSheepRetreat,
+        IntroSheepUnease,
         IntroSheepPet,
 
         SpawnField,
@@ -35,7 +35,7 @@ namespace VillagerTale
             { State.IntroSheepDialogue, Story.Intro.SheepDialogue },
             { State.IntroSheepGreet, Story.Intro.SheepGreet },
             { State.IntroSheepQuestion, Story.Intro.SheepQuestion },
-            { State.IntroSheepRetreat, Story.Intro.SheepRetreat },
+            { State.IntroSheepUnease, Story.Intro.SheepUnease },
             { State.IntroSheepPet, Story.Intro.SheepPet },
 
             { State.SpawnField, Story.SpawnField.Area },

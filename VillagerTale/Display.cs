@@ -101,26 +101,31 @@ namespace VillagerTale
 
         private static void CrawlText(string text)
         {
-            foreach (char character in text)
+            for (int i = 0; i < text.Length; i++)
             {
-                string cha = character.ToString();
-                Console.Write(cha);
+                string character = text[i].ToString();
+                Console.Write(character);
                 if (Console.KeyAvailable)
                 {
                     continue;
                 }
 
-                else if (cha == ",")
+                else if (character == ",")
                 {
                     Wait(200);
                 }
 
-                else if (cha == "." || cha == "?" || cha == "!")
+                else if (character == "." && i + 1 < text.Length && text[i + 1].ToString() == ".")
+                {
+                    Wait(150);
+                }
+
+                else if (character == "." || character == "?" || character == "!")
                 {
                     Wait(500);
                 }
 
-                else if (cha == "-")
+                else if (character == "-")
                 {
                     Wait(500);
                 }
