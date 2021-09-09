@@ -15,6 +15,7 @@ namespace VillagerTale
         IntroSheepQuestion,
         IntroSheepUnease,
         IntroSheepPet,
+        IntroSheepSelfish,
 
         SpawnField,
 
@@ -37,6 +38,7 @@ namespace VillagerTale
             { State.IntroSheepQuestion, Story.Intro.SheepQuestion },
             { State.IntroSheepUnease, Story.Intro.SheepUnease },
             { State.IntroSheepPet, Story.Intro.SheepPet },
+            { State.IntroSheepSelfish, Story.Intro.SheepSelfish },
 
             { State.SpawnField, Story.SpawnField.Area },
 

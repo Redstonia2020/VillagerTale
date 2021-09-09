@@ -45,6 +45,7 @@ namespace VillagerTale
 
             public static void SheepGreet()
             {
+                Game.Data.IntroSheepCharacter.Reputation += 5;
                 Display.Crawl("You greet the sheep in return.");
                 Display.Speak("Sheep", "You must be new.");
                 Display.Speak("Sheep", "Follow me!");
@@ -96,6 +97,7 @@ namespace VillagerTale
 
             public static void SheepUnease()
             {
+                Game.Data.IntroSheepCharacter.Reputation -= 5;
                 Display.Crawl("You slowly back away from the sheep.");
                 Display.Speak("Sheep", "W-why are you backing away?");
                 int choice = Display.Choose("", "\"I was just startled.\"", "Run away");
@@ -121,7 +123,48 @@ namespace VillagerTale
 
             public static void SheepPet()
             {
+                Game.Data.IntroSheepCharacter.Reputation -= 25;
+                Display.Text("The sheep jerks away quickly.");
+                Display.Speak("Sheep", "What do you think you're doing?");
+                int choice = Display.Choose("Try not to pet an otherworldly creature next time.",
+                    "\"Petting you?\"",
+                    "\"umm...\"",
+                    "\"I can do whatever I want!\"",
+                    "Stay silent");
+                
+                if (choice == 0)
+                {
+                    Display.Speak("Sheep", "How dare you!");
+                    Display.Crawl(false, "*ahem*");
+                    Display.Wait(500);
+                    Display.Crawl(false, "The sheep trembles slightly.");
+                    Display.Speak("Sheep", "Just know... I do not take lightly to being treated like an animal.");
+                }
 
+                else if (choice == 1 || choice == 3)
+                {
+                    Display.Speak("Sheep", "ANSWER ME!!!");
+                    Display.Crawl(false, "The sheep trembles, eyes blazing in rage.");
+                    Display.Crawl(false, "He composes himself.");
+                    Display.Speak("Sheep", "I'm sorry you had to see me like that.");
+                    Display.Speak("Sheep", "Maybe I should've told you earlier, I do not enjoy being treated like an animal.");
+                }
+
+                else if (choice == 2)
+                {
+                    States.Queue(State.IntroSheepSelfish);
+                    return;
+                }
+            }
+
+            public static void SheepSelfish()
+            {
+                Game.Data.IntroSheepCharacter.Reputation -= 100;
+                Display.Crawl(false, "The sheep stares at you, clear dismay upon his face.");
+                Display.Speak("Sheep", "How... how can I speak to such a selfish...");
+                Display.Speak("Sheep", "...such a selfish person?");
+
+                int choice = Display.Choose("", "\"I'm sorry...\"", "\"I didn't mean that.\"", "\"Why should I care about what you think?\"");
             }
         }
 
@@ -129,7 +172,8 @@ namespace VillagerTale
         {
             public static void Area()
             {
-
+                States.Queue(State.SpawnField);
+                Display.Choose("The lush green grass glitters under the shining sun.");
             }
         }
 

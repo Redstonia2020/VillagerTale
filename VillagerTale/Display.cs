@@ -94,6 +94,11 @@ namespace VillagerTale
             Crawl(alignment, true, text);
         }
 
+        public static void Crawl(bool wait, params string[] text)
+        {
+            Crawl(Align.Left, wait, text);
+        }
+
         public static void Crawl(params string[] text)
         {
             Crawl(Align.Left, text);
@@ -112,7 +117,7 @@ namespace VillagerTale
 
                 else if (character == ",")
                 {
-                    Wait(200);
+                    Wait(150);
                 }
 
                 else if (character == "." && i + 1 < text.Length && text[i + 1].ToString() == ".")
@@ -122,17 +127,17 @@ namespace VillagerTale
 
                 else if (character == "." || character == "?" || character == "!")
                 {
-                    Wait(500);
+                    Wait(350);
                 }
 
                 else if (character == "-")
                 {
-                    Wait(500);
+                    Wait(350);
                 }
 
                 else
                 {
-                    Wait(50);
+                    Wait(35);
                 }
             }
 

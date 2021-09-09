@@ -12,6 +12,9 @@ namespace VillagerTale
         }
 
         public State CurrentState { get; set; }
+
         public string Name { get; set; }
+
+        public IntroSheep IntroSheepCharacter = new IntroSheep();
     }
 }
