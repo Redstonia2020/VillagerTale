@@ -76,15 +76,15 @@ namespace VillagerTale
                 }
 
                 CrawlText(print);
-            }
 
-            Console.WriteLine();
+                Console.WriteLine();
 
-            if (wait)
-            {
-                if (Key() == ConsoleKey.Escape)
+                if (wait)
                 {
-                    Game.Pause();
+                    if (Key() == ConsoleKey.Escape)
+                    {
+                        Game.Pause();
+                    }
                 }
             }
         }

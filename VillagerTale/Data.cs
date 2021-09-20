@@ -15,6 +15,6 @@ namespace VillagerTale
 
         public string Name { get; set; }
 
-        public IntroSheep IntroSheepCharacter = new IntroSheep();
+        public IntroSheep IntroSheepCharacter { get; set; } = new IntroSheep();
     }
 }

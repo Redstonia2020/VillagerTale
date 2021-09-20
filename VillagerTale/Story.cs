@@ -155,6 +155,11 @@ namespace VillagerTale
                     States.Queue(State.IntroSheepSelfish);
                     return;
                 }
+
+                Display.Speak("Sheep", "Do we understand each other?");
+                Display.Crawl("You nod solemnly.",
+                    "The sheep's voice softens.");
+                Display.Speak("Sheep", "Good.");
             }
 
             public static void SheepSelfish()
@@ -165,6 +170,42 @@ namespace VillagerTale
                 Display.Speak("Sheep", "...such a selfish person?");
 
                 int choice = Display.Choose("", "\"I'm sorry...\"", "\"I didn't mean that.\"", "\"Why should I care about what you think?\"");
+                if (choice == 0)
+                {
+                    Game.Data.IntroSheepCharacter.Reputation += 25;
+                    Display.Speak("Sheep", "\"I'm sorry\" doesn't cut it.");
+                }
+
+                else if (choice == 1)
+                {
+                    Game.Data.IntroSheepCharacter.Reputation += 25;
+                    Display.Crawl("The sheep's voice rises to a shout.");
+                    Display.Speak("Sheep", "What do you mean, \"I don't mean that?!?\"");
+                    Display.Speak("Sheep", "Your few words are like manipulative poison, weaving between sorrow and ignorance!");
+                }
+
+                else if (choice == 2)
+                {
+                    Game.Data.IntroSheepCharacter.Reputation -= 100;
+                    Display.Text("This is not going to look good on your resume-");
+                    Display.Speak("Sheep", "Why you-");
+                    Display.Speak("Sheep", "What don't you understand here?");
+                    Display.Crawl(false, "You can feel the sheep's voice steadily rising to a shout.");
+                    Display.Speak("Sheep", "Look. You've gotta realize, one day or another...");
+                    Display.Speak("Sheep", "You're not the only one in this world who has thoughts... who has feelings.");
+                    Display.Speak("Sheep", "and if you're going to go around making the rest of our lives hell...");
+                    Display.Crawl(
+                        "The sheep stares, seething at you.",
+                        "Finally, deciding you are not worth the effort, he turns around and storms off through the grassy field to a shape in the distance.",
+                        "You are left staring at where he was.");
+                    States.Queue(State.SpawnField);
+                    return;
+                }
+
+                Display.Crawl("The sheep's voice lowers slightly.");
+                Display.Speak("Sheep", "Look, you need to be more careful what you say.");
+                Display.Speak("Sheep", "Saying things that are ignorant...");
+                Display.Speak("Sheep", "Those don't help your situation in any way.");
             }
         }
 
@@ -181,7 +222,7 @@ namespace VillagerTale
         {
             public static void Area()
             {
-
+                States.Queue(State.SheepHome);
             }
         }
     }
