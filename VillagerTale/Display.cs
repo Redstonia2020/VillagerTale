@@ -171,9 +171,11 @@ namespace VillagerTale
             else
                 Console.WriteLine(choose);
 
+            int startPos = Console.CursorTop;
+
             for (int i = 0; i < choices.Length; i++)
             {
-                Console.WriteLine($"  ({i + 1:D2}) {choices[i]}");
+                Console.WriteLine($"    {choices[i]}");
             }
 
             for (int i = 0; i < choices.Length; i++)
@@ -181,25 +183,71 @@ namespace VillagerTale
                 choices[i] = choices[i].ToLower();
             }
 
+            int choice = 0;
+            int cursorX = Console.CursorLeft;
+            int cursorY = Console.CursorTop;
             while (true)
             {
-                string choice = Console.ReadLine().ToLower();
-                if (string.IsNullOrWhiteSpace(choice)) { }
-                else if (int.TryParse(choice, out int index) && --index < choices.Length)
+                Console.SetCursorPosition(2, startPos + choice);
+                Console.Write(">");
+                Console.SetCursorPosition(cursorX, cursorY);
+
+                ConsoleKey key = Console.ReadKey().Key;
+
+                Console.SetCursorPosition(2, startPos + choice);
+                Console.Write(" ");
+
+                if (key == ConsoleKey.DownArrow && choice < choices.Length - 1)
                 {
-                    return index;
+                    choice++;
                 }
 
-                else if (Array.Exists(choices, e => e.StartsWith(choice)))
+                else if (key == ConsoleKey.UpArrow && choice > 0)
                 {
-                    return Array.FindIndex(choices, e => e.StartsWith(choice));
+                    choice--;
                 }
 
-                else if (Array.Exists(choices, e => e.Contains(choice)))
+                else if (key == ConsoleKey.Enter)
                 {
-                    return Array.FindIndex(choices, e => e.Contains(choice));
+                    Console.SetCursorPosition(cursorX, cursorY);
+                    return choice;
                 }
             }
+
+            //if (crawl)
+            //    Crawl(Align.Left, false, choose);
+            //else
+            //    Console.WriteLine(choose);
+
+            //for (int i = 0; i < choices.Length; i++)
+            //{
+            //    Console.WriteLine($"  ({i + 1:D2}) {choices[i]}");
+            //}
+
+            //for (int i = 0; i < choices.Length; i++)
+            //{
+            //    choices[i] = choices[i].ToLower();
+            //}
+
+            //while (true)
+            //{
+            //    string choice = Console.ReadLine().ToLower();
+            //    if (string.IsNullOrWhiteSpace(choice)) { }
+            //    else if (int.TryParse(choice, out int index) && --index < choices.Length)
+            //    {
+            //        return index;
+            //    }
+
+            //    else if (Array.Exists(choices, e => e.StartsWith(choice)))
+            //    {
+            //        return Array.FindIndex(choices, e => e.StartsWith(choice));
+            //    }
+
+            //    else if (Array.Exists(choices, e => e.Contains(choice)))
+            //    {
+            //        return Array.FindIndex(choices, e => e.Contains(choice));
+            //    }
+            //}
         }
 
         public static int Choose(string choose, params string[] choices)
